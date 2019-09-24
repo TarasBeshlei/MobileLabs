@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F12DCA523217F2700CA9977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DCA423217F2700CA9977 /* AppDelegate.swift */; };
-		9F12DCA723217F2700CA9977 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DCA623217F2700CA9977 /* ViewController.swift */; };
+		9F12DCA723217F2700CA9977 /* LogInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DCA623217F2700CA9977 /* LogInScreen.swift */; };
 		9F12DCAA23217F2700CA9977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12DCA823217F2700CA9977 /* Main.storyboard */; };
 		9F12DCAC23217F2800CA9977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F12DCAB23217F2800CA9977 /* Assets.xcassets */; };
 		9F12DCAF23217F2800CA9977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12DCAD23217F2800CA9977 /* LaunchScreen.storyboard */; };
@@ -25,7 +25,7 @@
 		97D303258D0540A7C3B7227B /* Pods-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile.debug.xcconfig"; path = "Target Support Files/Pods-Mobile/Pods-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		9F12DCA123217F2700CA9977 /* Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F12DCA423217F2700CA9977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F12DCA623217F2700CA9977 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F12DCA623217F2700CA9977 /* LogInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreen.swift; sourceTree = "<group>"; };
 		9F12DCA923217F2700CA9977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F12DCAB23217F2800CA9977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F12DCAE23217F2800CA9977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				9F12DCA423217F2700CA9977 /* AppDelegate.swift */,
-				9F12DCA623217F2700CA9977 /* ViewController.swift */,
+				9F12DCA623217F2700CA9977 /* LogInScreen.swift */,
 				9F12DCA823217F2700CA9977 /* Main.storyboard */,
 				9F12DCAB23217F2800CA9977 /* Assets.xcassets */,
 				9F12DCAD23217F2800CA9977 /* LaunchScreen.storyboard */,
@@ -235,7 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F14543E2326F13500336BFE /* SignInFirebase.swift in Sources */,
-				9F12DCA723217F2700CA9977 /* ViewController.swift in Sources */,
+				9F12DCA723217F2700CA9977 /* LogInScreen.swift in Sources */,
 				9F8CFF39233025DE00C1B4E5 /* SignUpFireBase.swift in Sources */,
 				9FFABDB22334E11F007EBBB4 /* Validation.swift in Sources */,
 				9F12DCA523217F2700CA9977 /* AppDelegate.swift in Sources */,

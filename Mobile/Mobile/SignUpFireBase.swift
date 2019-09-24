@@ -9,27 +9,32 @@
 import UIKit
 import Firebase
 
-class SignUpFireBase: UIViewController, UITextFieldDelegate {
+final class SignUpFireBase: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var phone: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var errorInField: UILabel!
-    @IBOutlet weak var emailErro: UILabel!
-    @IBOutlet weak var passwordError: UILabel!
-    @IBOutlet weak var nameError: UILabel!
-    @IBOutlet weak var phoneError: UILabel!
-    @IBOutlet weak var fbSignOut: UIButton!
+    //MARK: UI Variables
+    @IBOutlet weak private var emailField: UITextField!
+    @IBOutlet weak private var passwordField: UITextField!
+    @IBOutlet weak private var nameField: UITextField!
+    @IBOutlet weak private var phoneField: UITextField!
+    @IBOutlet weak private var signInButton: UIButton!
+    @IBOutlet weak private var errorInFieldField: UILabel!
+    @IBOutlet weak private var emailErrorLable: UILabel!
+    @IBOutlet weak private var passwordErrorLable: UILabel!
+    @IBOutlet weak private var nameErrorLable: UILabel!
+    @IBOutlet weak private var phoneErrorLable: UILabel!
+    @IBOutlet weak private var fbSignOut: UIButton!
     
-    static var nameCopy :String! = nil
-    var slideDownCountEmail :Int! = 0
-    var slideDownCountPassword :Int! = 0
-    var slideDownCountName :Int! = 0
-    var slideDownCountPhone :Int! = 0
-    var signUpCount : Int! = 0
+    //MARK: Static Variables
+    public static var nameCopy :String! = nil
+    
+    //MARK: Public Variables
+    private var slideDownCountEmail :Int = 0
+    private var slideDownCountPassword :Int = 0
+    private var slideDownCountName :Int = 0
+    private var slideDownCountPhone :Int = 0
+    private var validationAnimationCount : Int = 0
    
+    //MARK: Button Methods
     @IBAction func signUpButton(_ sender: Any) {
    
         validationForEmail()
@@ -37,192 +42,150 @@ class SignUpFireBase: UIViewController, UITextFieldDelegate {
         validationForName()
         validationForPhone()
         
-        SignUpFireBase.nameCopy = name.text!
+        SignUpFireBase.nameCopy = nameField.text!
         
-        if ((email.text! != "" && password.text! != "" && name.text! != "" && phone.text! != "") || (password.text! != "" && name.text! != "" && phone.text! != "") || (name.text! != "" && phone.text! != "") || (phone.text! != "")  && (email.text! != "") && (password.text! != "")) {
-        
-            SignUpFireBase.nameCopy = ", \(name.text!)"
-            
+        if ((emailField.text!.isEmpty && passwordField.text!.isEmpty && nameField.text!.isEmpty && phoneField.text!.isEmpty) || (passwordField.text!.isEmpty && nameField.text!.isEmpty && phoneField.text!.isEmpty) || (nameField.text!.isEmpty && phoneField.text!.isEmpty) || (phoneField.text!.isEmpty)  && (emailField.text!.isEmpty) && (passwordField.text!.isEmpty) && (phoneField.text!.count != 10) && (passwordField.text!.count <= 8)) {
+        } else {
+            SignUpFireBase.nameCopy = ", \(nameField.text!)"
             signUpFirebase()
-            
         }
     }
     
     @IBAction func backToSignIn(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "backToSignIn", sender: self)
-        
+        performSegue(withIdentifier: "backToSignIn", sender: self)
     }
     
-    func signUpFirebase() {
-        
-        Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
+    //MARK: Private Methods
+    private func signUpFirebase() {
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
             if (error == nil) {
                 print("Success Up")
                 self.performSegue(withIdentifier: "WelcomeFromSignUp", sender: self)
-                if (self.signUpCount == 1) {
-                    
+                if (self.validationAnimationCount == 1) {
                     self.signUpErrorUp()
-                    self.signUpCount = 0
-                    
+                    self.validationAnimationCount = 0
                 }
-            } else if (self.signUpCount == 0) {
-                
+            } else if (self.validationAnimationCount == 0) {
                 self.signUpErrorDown()
-                self.signUpCount = 1
-                
+                self.validationAnimationCount = 1
             }
         }
     }
 
-    func signUpErrorDown() {
-        
-        
-        Validation().validationIndication(inField: email)
-        Validation().validationIndication(inField: password)
-        Validation().fieldsSlideDown(inField: name)
-        Validation().fieldsSlideDown(inField: phone)
-        Validation().errorFieldMessageAnimateDown(inField: nameError)
-        Validation().errorFieldMessageAnimateDown(inField: phoneError)
-        passwordError.text! = "Email don't exist or this email already had been sign up"
-        
+    private func signUpErrorDown() {
+        Validation().validationIndication(inField: emailField)
+        Validation().validationIndication(inField: passwordField)
+        Validation().fieldsSlideDown(inField: nameField)
+        Validation().fieldsSlideDown(inField: phoneField)
+        Validation().errorFieldMessageAnimateDown(inField: nameErrorLable)
+        Validation().errorFieldMessageAnimateDown(inField: phoneErrorLable)
+        passwordErrorLable.text! = "Email don't exist or this email already had been sign up"
     }
     
-    func signUpErrorUp() {
-        
-        Validation().borderStandartColor(inField: email)
-        Validation().borderStandartColor(inField: password)
-        Validation().fieldsSlideUp(inField: name)
-        Validation().fieldsSlideUp(inField: phone)
-        Validation().errorFieldMessageAnimationUp(inField: nameError)
-        Validation().errorFieldMessageAnimationUp(inField: phoneError)
-        passwordError.text! = "Email don't exist or this email already had been sign up"
-        
+    private func signUpErrorUp() {
+        Validation().borderStandartColor(inField: emailField)
+        Validation().borderStandartColor(inField: passwordField)
+        Validation().fieldsSlideUp(inField: nameField)
+        Validation().fieldsSlideUp(inField: phoneField)
+        Validation().errorFieldMessageAnimationUp(inField: nameErrorLable)
+        Validation().errorFieldMessageAnimationUp(inField: phoneErrorLable)
+        passwordErrorLable.text! = "Email don't exist or this email already had been sign up"
     }
     
-    func validateEmptyField() {
-        
-        if (email.text! == "" && password.text! == "" && name.text! == "" && phone.text! == "") {
-            
-            self.errorInField.text! = "Please, Sign In or Sign Up."
+    private func validateEmptyField() {
+        if (emailField.text! == "" && passwordField.text! == "" && nameField.text! == "" && phoneField.text! == "") {
+            self.errorInFieldField.text! = "Please, Sign In or Sign Up."
         }
     }
     
-    func validationForEmail() {
-        
-        if (email.text! == "" && slideDownCountEmail == 0) {
-            
-            Validation().validationIndication(inField: email)
-            Validation().fieldsSlideDown(inField: password)
-            Validation().fieldsSlideDown(inField: name)
-            Validation().fieldsSlideDown(inField: phone)
-            Validation().errorFieldMessageAnimateDown(inField: passwordError)
-            Validation().errorFieldMessageAnimateDown(inField: nameError)
-            Validation().errorFieldMessageAnimateDown(inField: phoneError)
-            emailErro.text! = "Pleas, fill thies field."
+    private func validationForEmail() {
+        if (emailField.text! == "" && slideDownCountEmail == 0) {
+            Validation().validationIndication(inField: emailField)
+            Validation().fieldsSlideDown(inField: passwordField)
+            Validation().fieldsSlideDown(inField: nameField)
+            Validation().fieldsSlideDown(inField: phoneField)
+            Validation().errorFieldMessageAnimateDown(inField: passwordErrorLable)
+            Validation().errorFieldMessageAnimateDown(inField: nameErrorLable)
+            Validation().errorFieldMessageAnimateDown(inField: phoneErrorLable)
+            emailErrorLable.text! = "Pleas, fill thies field."
             slideDownCountEmail = 1
-            
-        } else if (email.text!.count > 0 && slideDownCountEmail == 1) {
-            
-            Validation().borderStandartColor(inField: email)
-            Validation().fieldsSlideUp(inField: password)
-            Validation().fieldsSlideUp(inField: name)
-            Validation().fieldsSlideUp(inField: phone)
-            Validation().errorFieldMessageAnimationUp(inField: passwordError)
-            Validation().errorFieldMessageAnimationUp(inField: nameError)
-            Validation().errorFieldMessageAnimationUp(inField: phoneError)
-            emailErro.text! = ""
-            
+        } else if (emailField.text!.count > 0 && slideDownCountEmail == 1) {
+            Validation().borderStandartColor(inField: emailField)
+            Validation().fieldsSlideUp(inField: passwordField)
+            Validation().fieldsSlideUp(inField: nameField)
+            Validation().fieldsSlideUp(inField: phoneField)
+            Validation().errorFieldMessageAnimationUp(inField: passwordErrorLable)
+            Validation().errorFieldMessageAnimationUp(inField: nameErrorLable)
+            Validation().errorFieldMessageAnimationUp(inField: phoneErrorLable)
+            emailErrorLable.text! = ""
             slideDownCountEmail -= 1
-            
         }
     }
     
-    func validationForPassword() {
-        
-        if ((password.text! == "" && slideDownCountPassword == 0) || (password.text!.count < 8 && slideDownCountPassword == 0)) {
-            
-            Validation().validationIndication(inField: password)
-            Validation().fieldsSlideDown(inField: name)
-            Validation().fieldsSlideDown(inField: phone)
-            Validation().errorFieldMessageAnimateDown(inField: nameError)
-            Validation().errorFieldMessageAnimateDown(inField: phoneError)
-            
-            passwordError.text! = "Password is required more than 8 character"
+    private func validationForPassword() {
+        if ((passwordField.text! == "" && slideDownCountPassword == 0) || (passwordField.text!.count < 8 && slideDownCountPassword == 0)) {
+            Validation().validationIndication(inField: passwordField)
+            Validation().fieldsSlideDown(inField: nameField)
+            Validation().fieldsSlideDown(inField: phoneField)
+            Validation().errorFieldMessageAnimateDown(inField: nameErrorLable)
+            Validation().errorFieldMessageAnimateDown(inField: phoneErrorLable)
+            passwordErrorLable.text! = "Password is required more than 8 character"
             slideDownCountPassword = 1
-            
-        } else if (password.text!.count >= 8 && slideDownCountPassword == 1) {
-            
-            Validation().borderStandartColor(inField: password)
-            Validation().fieldsSlideUp(inField: name)
-            Validation().fieldsSlideUp(inField: phone)
-            Validation().errorFieldMessageAnimationUp(inField: nameError)
-            Validation().errorFieldMessageAnimationUp(inField: phoneError)
-            
-            passwordError.text! = ""
+        } else if (passwordField.text!.count >= 8 && slideDownCountPassword == 1) {
+            Validation().borderStandartColor(inField: passwordField)
+            Validation().fieldsSlideUp(inField: nameField)
+            Validation().fieldsSlideUp(inField: phoneField)
+            Validation().errorFieldMessageAnimationUp(inField: nameErrorLable)
+            Validation().errorFieldMessageAnimationUp(inField: phoneErrorLable)
+            passwordErrorLable.text! = ""
             slideDownCountPassword -= 1
-            
         }
     }
     
-    func validationForName() {
-        
-        if (name.text! == "" && slideDownCountName == 0) {
-            
-            Validation().validationIndication(inField: name)
-            Validation().fieldsSlideDown(inField: phone)
-            Validation().errorFieldMessageAnimateDown(inField: phoneError)
-            nameError.text! = "Please, fill this field."
-            
+    private func validationForName() {
+        if (nameField.text! == "" && slideDownCountName == 0) {
+            Validation().validationIndication(inField: nameField)
+            Validation().fieldsSlideDown(inField: phoneField)
+            Validation().errorFieldMessageAnimateDown(inField: phoneErrorLable)
+            nameErrorLable.text! = "Please, fill this field."
             slideDownCountName = 1
-            
-        } else if (name.text!.count > 0 && slideDownCountName == 1) {
-            
-            Validation().borderStandartColor(inField: name)
-            Validation().fieldsSlideUp(inField: phone)
-            Validation().errorFieldMessageAnimationUp(inField: phoneError)
+        } else if (nameField.text!.count > 0 && slideDownCountName == 1) {
+            Validation().borderStandartColor(inField: nameField)
+            Validation().fieldsSlideUp(inField: phoneField)
+            Validation().errorFieldMessageAnimationUp(inField: phoneErrorLable)
             slideDownCountName -= 1
-            nameError.text! = ""
-            
+            nameErrorLable.text! = ""
         }
     }
     
-    func validationForPhone() {
-        
-        if (phone.text! == "" && slideDownCountPhone == 0 && phone.text!.count < 10 && phone.text!.count > 10) {
-            
-            Validation().validationIndication(inField: phone)
+    private func validationForPhone() {
+        if ((phoneField.text! == "" && slideDownCountPhone == 0) || (phoneField.text!.count != 10)) {
+            Validation().validationIndication(inField: phoneField)
             slideDownCountPhone = 1
-            phoneError.text! = "Pleas, fill thies field. Count 10 of number requirements"
-            
-        } else if (phone.text!.count > 0 && slideDownCountPhone == 1 && phone.text!.count >= 10) {
-            
-            Validation().borderStandartColor(inField: phone)
+            phoneErrorLable.text! = "Pleas, fill thies field. Count 10 of number requirements"
+        } else if (phoneField.text!.count > 0 && slideDownCountPhone == 1 && phoneField.text!.count >= 10) {
+            Validation().borderStandartColor(inField: phoneField)
             slideDownCountPhone -= 1
-            phoneError.text! = ""
-            
+            phoneErrorLable.text! = ""
         }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let allowedCharacters = CharacterSet.decimalDigits
+        let allowedCharactersForPhoneField = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharacters.isSuperset(of: characterSet)
-        
+        return allowedCharactersForPhoneField.isSuperset(of: characterSet)
     }
     
+    //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Sign Up"
+        title = "Sign Up"
         self.signInButton.layer.cornerRadius = 7
         self.fbSignOut.layer.cornerRadius = 7
-        self.phone.delegate = self
-        // Do any additional setup after loading the view.
+        phoneField.delegate = self
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
-
 }

@@ -13,7 +13,7 @@
         <!--Sign In-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LogInScreen" customModule="Mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +37,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="enterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yvx-hd-rQq"/>
+                                    <action selector="signInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yvx-hd-rQq"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k74-qn-eRM">
@@ -77,8 +77,13 @@
                                 <state key="normal" title="Facebook Sing In">
                                     <color key="titleColor" red="0.095794467750000001" green="0.098427978700000002" blue="0.190009715" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="signInFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fw6-jS-BhO"/>
+                                    <action selector="signInFacebookButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fw6-jS-BhO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TC7-6q-WbA">
@@ -218,7 +223,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="enterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZzS-na-Ybe"/>
+                                    <action selector="signInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZzS-na-Ybe"/>
                                     <action selector="signUpButton:" destination="S1D-td-ywc" eventType="touchUpInside" id="7Jv-hk-Iqv"/>
                                 </connections>
                             </button>
@@ -310,7 +315,7 @@
                                 </state>
                                 <connections>
                                     <action selector="backToSignIn:" destination="S1D-td-ywc" eventType="touchUpInside" id="qpd-gS-zVT"/>
-                                    <action selector="enterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sHv-jH-5Kc"/>
+                                    <action selector="signInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sHv-jH-5Kc"/>
                                     <action selector="signUpButton:" destination="S1D-td-ywc" eventType="touchUpInside" id="B2y-aa-YB6"/>
                                 </connections>
                             </button>
@@ -319,16 +324,16 @@
                         <viewLayoutGuide key="safeArea" id="eZ6-CB-Ynd"/>
                     </view>
                     <connections>
-                        <outlet property="email" destination="grs-fj-clq" id="svk-0K-IKx"/>
-                        <outlet property="emailErro" destination="KNv-cV-fe2" id="343-ga-EfB"/>
-                        <outlet property="errorInField" destination="2il-xE-gkL" id="Ivg-62-CVz"/>
+                        <outlet property="emailErrorLable" destination="KNv-cV-fe2" id="343-ga-EfB"/>
+                        <outlet property="emailField" destination="grs-fj-clq" id="svk-0K-IKx"/>
+                        <outlet property="errorInFieldField" destination="2il-xE-gkL" id="Ivg-62-CVz"/>
                         <outlet property="fbSignOut" destination="LW1-ys-WyS" id="hWY-cQ-YD4"/>
-                        <outlet property="name" destination="JEI-Wp-dwq" id="cix-Sd-ITw"/>
-                        <outlet property="nameError" destination="aGn-UB-BK4" id="BTI-YV-ks7"/>
-                        <outlet property="password" destination="hWb-4g-7m7" id="whG-N1-RxV"/>
-                        <outlet property="passwordError" destination="YYu-AW-S9v" id="Yr0-eT-WHc"/>
-                        <outlet property="phone" destination="ziM-Bn-P4u" id="LT1-o9-iUv"/>
-                        <outlet property="phoneError" destination="nev-bj-PX5" id="quN-hP-akE"/>
+                        <outlet property="nameErrorLable" destination="aGn-UB-BK4" id="BTI-YV-ks7"/>
+                        <outlet property="nameField" destination="JEI-Wp-dwq" id="cix-Sd-ITw"/>
+                        <outlet property="passwordErrorLable" destination="YYu-AW-S9v" id="Yr0-eT-WHc"/>
+                        <outlet property="passwordField" destination="hWb-4g-7m7" id="whG-N1-RxV"/>
+                        <outlet property="phoneErrorLable" destination="nev-bj-PX5" id="quN-hP-akE"/>
+                        <outlet property="phoneField" destination="ziM-Bn-P4u" id="LT1-o9-iUv"/>
                         <outlet property="signInButton" destination="CK6-Pt-Qhj" id="fzB-8L-L4f"/>
                         <segue destination="vxU-eZ-NW1" kind="show" identifier="WelcomeFromSignUp" id="gza-vz-PnC"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="backToSignIn" id="Yx3-J4-bYz"/>
@@ -340,7 +345,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gza-vz-PnC"/>
-        <segue reference="ee6-HZ-8aB"/>
+        <segue reference="0cQ-Bh-1gd"/>
+        <segue reference="Yx3-J4-bYz"/>
     </inferredMetricsTieBreakers>
 </document>

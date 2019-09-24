@@ -9,41 +9,34 @@
 import Foundation
 import UIKit
 
-class Validation {
+final class Validation {
 
-    func fieldsSlideDown(inField: UITextField) {
-        
+    //MARK: Public Methods
+    public func fieldsSlideDown(inField: UITextField) {
         UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             inField.center.y += 20
         }, completion: nil)
-        
     }
     
-    func fieldsSlideUp(inField: UITextField) {
-        
+    public func fieldsSlideUp(inField: UITextField) {
         UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             inField.center.y -= 20
         }, completion: nil)
     }
     
-    func errorFieldMessageAnimateDown(inField: UILabel!) {
-        
+    public func errorFieldMessageAnimateDown(inField: UILabel!) {
         UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             inField.center.y += 20
         }, completion: nil)
-        
     }
     
-    func errorFieldMessageAnimationUp(inField: UILabel!) {
-        
+    public func errorFieldMessageAnimationUp(inField: UILabel!) {
         UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             inField.center.y -= 20
         }, completion: nil)
-        
     }
     
-    func validationIndication(inField: UITextField) {
-        
+    public func validationIndication(inField: UITextField) {
         inField.layer.borderColor = UIColor.red.cgColor
         inField.layer.borderWidth = 1.0
         inField.layer.cornerRadius = 3
@@ -61,11 +54,9 @@ class Validation {
         }, completion: nil)
     }
     
-    func borderStandartColor(inField: UITextField) {
-        
+    public func borderStandartColor(inField: UITextField) {
         inField.layer.borderColor = UIColor.darkGray.cgColor
         inField.layer.borderWidth = 1.0
         inField.layer.cornerRadius = 3
-        
     }
 }
