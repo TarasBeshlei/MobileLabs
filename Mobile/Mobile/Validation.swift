@@ -13,7 +13,7 @@ final class Validation {
 
     //MARK: Public Methods
     public func fieldsSlideDown(inField: UITextField) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             inField.center.y += 20
         }, completion: nil)
     }

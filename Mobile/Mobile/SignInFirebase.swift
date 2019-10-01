@@ -8,15 +8,14 @@
 
 import UIKit
 import GoogleSignIn
-import FBSDKCoreKit
-import FBSDKLoginKit
+import FacebookLogin
 
-class SignInFirebase: UIViewController {
+final class SignInFirebase: UIViewController {
     
     //MARK: UI Variables
-    @IBOutlet weak var welcome: UILabel!
-    @IBOutlet weak var fbButton: UIButton!
-    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak private var welcomeLable: UILabel!
+    @IBOutlet weak private var fbButton: UIButton!
+    @IBOutlet weak private var signOutButton: UIButton!
     
     var nameCop = SignUpFireBase.nameCopy
   
@@ -26,14 +25,13 @@ class SignInFirebase: UIViewController {
     }
     
     @IBAction func button(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "signout", sender: nil)
+        performSegue(withIdentifier: "signout", sender: nil)
     }
     
     @IBAction func logoutButton(_ sender: Any) {
         let loginManager = LoginManager()
         loginManager.logOut()
-                self.performSegue(withIdentifier: "signout", sender: nil)
+        performSegue(withIdentifier: "signout", sender: nil)
     }
     
     //MARK: Override Methods
@@ -42,9 +40,9 @@ class SignInFirebase: UIViewController {
         self.fbButton.layer.cornerRadius = 7
         self.signOutButton.layer.cornerRadius = 7
         if (SignUpFireBase.nameCopy != nil) {
-            welcome.text! = "Welcome\(nameCop!)"
+            welcomeLable.text = "Welcome\(String(describing: nameCop))"
         } else {
-            welcome.text! = "Welcome"
+            welcomeLable.text = "Welcome"
         }
         // Do any additional setup after loading the view.
     }

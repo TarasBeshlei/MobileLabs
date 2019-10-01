@@ -8,11 +8,9 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
-import FacebookCore
 import FacebookLogin
 
-class LogInScreen: UIViewController {
+final class LogInScreen: UIViewController {
     
     private var fbLoginSuccess = false
     
@@ -34,6 +32,30 @@ class LogInScreen: UIViewController {
     }
     
     //MARK: Private Methods
+    private func validationIndication() {
+        email.layer.borderColor = UIColor.red.cgColor
+        email.layer.borderWidth = 1.0
+        email.layer.cornerRadius = 3
+        password.layer.borderColor = UIColor.red.cgColor
+        password.layer.borderWidth = 1.0
+        password.layer.cornerRadius = 3
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.email.center.x += 10
+            self.password.center.x += 10
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.1, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.email.center.x -= 20
+            self.password.center.x -= 20
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.1, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.email.center.x += 10
+            self.password.center.x += 10
+        }, completion: nil)
+    }
+    
     private func signInFirebase() {
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] user, error in
             guard let strongSelf = self else { return }
@@ -73,31 +95,6 @@ class LogInScreen: UIViewController {
             self.errorInField.text! = "Please, Sign In or Sign Up."
         }
     }
-    
-    private func validationIndication() {
-        email.layer.borderColor = UIColor.red.cgColor
-        email.layer.borderWidth = 1.0
-        email.layer.cornerRadius = 3
-        password.layer.borderColor = UIColor.red.cgColor
-        password.layer.borderWidth = 1.0
-        password.layer.cornerRadius = 3
-        
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.email.center.x += 10
-            self.password.center.x += 10
-        }, completion: nil)
-        
-        UIView.animate(withDuration: 0.1, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.email.center.x -= 20
-            self.password.center.x -= 20
-        }, completion: nil)
-        
-        UIView.animate(withDuration: 0.1, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.email.center.x += 10
-            self.password.center.x += 10
-        }, completion: nil)
-    }
-    
     
     //MARK: Override Methods
     override func viewDidLoad() {
