@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GoogleSignIn
+import Firebase
 import FacebookLogin
 
 final class SignInFirebase: UIViewController {
@@ -17,9 +17,7 @@ final class SignInFirebase: UIViewController {
     @IBOutlet weak private var fbButton: UIButton!
     @IBOutlet weak private var signOutButton: UIButton!
     
-    var nameCop = SignUpFireBase.nameCopy
-  
-    //MARK: Button Methods
+    //MARK: UIButton Methods
     @IBAction func Exit(_ sender: Any) {
         exit(0)
     }
@@ -39,11 +37,8 @@ final class SignInFirebase: UIViewController {
         super.viewDidLoad()
         self.fbButton.layer.cornerRadius = 7
         self.signOutButton.layer.cornerRadius = 7
-        if (SignUpFireBase.nameCopy != nil) {
-            welcomeLable.text = "Welcome\(String(describing: nameCop))"
-        } else {
-            welcomeLable.text = "Welcome"
-        }
+        let currentUser = Auth.auth().currentUser?.displayName
+        welcomeLable.text = "Welcome: \(currentUser!)"
         // Do any additional setup after loading the view.
     }
 }

@@ -11,31 +11,7 @@ import UIKit
 
 final class Validation {
 
-    //MARK: Public Methods
-    public func fieldsSlideDown(inField: UITextField) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-            inField.center.y += 20
-        }, completion: nil)
-    }
-    
-    public func fieldsSlideUp(inField: UITextField) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            inField.center.y -= 20
-        }, completion: nil)
-    }
-    
-    public func errorFieldMessageAnimateDown(inField: UILabel!) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            inField.center.y += 20
-        }, completion: nil)
-    }
-    
-    public func errorFieldMessageAnimationUp(inField: UILabel!) {
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            inField.center.y -= 20
-        }, completion: nil)
-    }
-    
+    //MARK: Public Methods    
     public func validationIndication(inField: UITextField) {
         inField.layer.borderColor = UIColor.red.cgColor
         inField.layer.borderWidth = 1.0
