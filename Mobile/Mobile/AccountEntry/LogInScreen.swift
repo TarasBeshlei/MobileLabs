@@ -23,12 +23,25 @@ final class LogInScreen: UIViewController {
     
     //MARK: Button Methods
     @IBAction func signInButton(_ sender: Any) {
-        signInFirebase()
         validateField()
     }
     
     @IBAction func signInFacebookButton(_ sender: Any) {
         signInFacebook()
+    }
+    
+    //MARK: View controller lifecycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        button.layer.cornerRadius = 7
+        fbButton.layer.cornerRadius = 7
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            guard fbLoginSuccess == true else {return}
+            performSegue(withIdentifier: "WaterListSegue", sender: self)
     }
     
     //MARK: Private Methods
@@ -42,7 +55,7 @@ final class LogInScreen: UIViewController {
             guard let strongSelf = self else { return }
             if (error == nil) {
                 print("Success in")
-                self!.performSegue(withIdentifier: "WelcomeSegue", sender: self)
+                self!.performSegue(withIdentifier: "WaterListSegue", sender: self)
             } else {
                 if (self!.email.text!.isEmpty && self!.password.text!.isEmpty) {
                     self?.errorInField.text! = "Wrong email or password, try againg."
@@ -64,7 +77,7 @@ final class LogInScreen: UIViewController {
                 break
             case .success(let grantedPermissions, let declinedPermissions, let accesToken):
                 print("Success")
-                self.performSegue(withIdentifier: "WelcomeSegue", sender: nil)
+                self.performSegue(withIdentifier: "WaterListSegue", sender: nil)
                 self.fbLoginSuccess = true
             }
         }
@@ -74,21 +87,8 @@ final class LogInScreen: UIViewController {
         if (email.text!.isEmpty || password.text!.isEmpty) {
             validationIndication()
             self.errorInField.text! = "Please, Sign In or Sign Up."
+        } else {
+            signInFirebase()
         }
-    }
-    
-    //MARK: Override Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        UIApplication.shared.statusBarStyle = .lightContent
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.button.layer.cornerRadius = 7
-        self.fbButton.layer.cornerRadius = 7
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-            guard fbLoginSuccess == true else {return}
-            performSegue(withIdentifier: "WelcomeSegue", sender: self)
     }
 }
