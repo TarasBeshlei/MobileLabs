@@ -1,0 +1,9 @@
+
+/* Class = "UISegmentedControl"; BDW-vP-rBL.segmentTitles[0] = "First"; ObjectID = "BDW-vP-rBL"; */
+"BDW-vP-rBL.segmentTitles[0]" = "First";
+
+/* Class = "UISegmentedControl"; BDW-vP-rBL.segmentTitles[1] = "Second"; ObjectID = "BDW-vP-rBL"; */
+"BDW-vP-rBL.segmentTitles[1]" = "Second";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cXN-xu-AOa"; */
+"cXN-xu-AOa.normalTitle" = "Button";
