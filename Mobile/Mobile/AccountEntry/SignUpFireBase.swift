@@ -59,6 +59,8 @@ final class SignUpFireBase: UIViewController {
         setupNSRegularExpression()
     }
     
+
+    
     //MARK: Private Methods
     private func signUpFirebase() {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
