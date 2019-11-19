@@ -49,6 +49,16 @@ final class SignUpFireBase: UIViewController {
         performSegue(withIdentifier: "backToSignIn", sender: self)
     }
     
+    //MARK: View controller lifecycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Sign Up"
+        signInButton.layer.cornerRadius = 7
+        fbSignOut.layer.cornerRadius = 7
+        phoneField.delegate = self
+        setupNSRegularExpression()
+    }
+    
     //MARK: Private Methods
     private func signUpFirebase() {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { authResult, error in
@@ -59,8 +69,9 @@ final class SignUpFireBase: UIViewController {
                 changeRequest?.displayName = self.nameField.text
                 changeRequest?.commitChanges(completion: nil)
                 guard let name = authResult?.user.displayName else {return}
-
-                } else {
+                
+                
+            } else {
                 self.signUpError()
             }
         }
@@ -122,18 +133,9 @@ final class SignUpFireBase: UIViewController {
             return true
         }
     }
-    
-    //MARK: Override Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Sign Up"
-        self.signInButton.layer.cornerRadius = 7
-        self.fbSignOut.layer.cornerRadius = 7
-        phoneField.delegate = self
-        setupNSRegularExpression()
-    }
 }
 
+//MARK: UITextFieldDelegate
 extension SignUpFireBase: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharactersForPhoneField = CharacterSet.decimalDigits

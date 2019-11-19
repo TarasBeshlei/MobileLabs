@@ -14,5 +14,8 @@ pod 'Firebase/Auth'
 pod 'FBSDKLoginKit'
 pod 'FacebookCore'
 pod 'FacebookLogin'
+platform :ios, '8.0'
+pod 'SDWebImage', '~> 5.0'
+pod 'MaterialComponents/Snackbar'
 
 end
