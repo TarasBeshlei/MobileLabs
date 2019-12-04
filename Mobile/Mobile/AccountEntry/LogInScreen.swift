@@ -55,6 +55,7 @@ final class LogInScreen: UIViewController {
             guard let strongSelf = self else { return }
             if (error == nil) {
                 print("Success in")
+                
                 self!.performSegue(withIdentifier: "WaterListSegue", sender: self)
             } else {
                 self?.errorInField.text! = "Wrong email or password, try againg."

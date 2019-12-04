@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F0D8250238072EC005E5837 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D824F238072EC005E5837 /* ProfileCell.swift */; };
+		9F1062EF23856F430068786C /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1062EE23856F430068786C /* UserInfo.swift */; };
 		9F12DCA523217F2700CA9977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DCA423217F2700CA9977 /* AppDelegate.swift */; };
 		9F12DCA723217F2700CA9977 /* LogInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DCA623217F2700CA9977 /* LogInScreen.swift */; };
 		9F12DCAA23217F2700CA9977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12DCA823217F2700CA9977 /* Main.storyboard */; settings = {ASSET_TAGS = (6, ); }; };
@@ -16,6 +17,8 @@
 		9F1D6B47236AB73A00979AFF /* WaterInfoModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1D6B46236AB73A00979AFF /* WaterInfoModule.swift */; };
 		9F2038412368D05C000F7521 /* WaterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2038402368D05C000F7521 /* WaterInfoCell.swift */; };
 		9F2A7F40235CD0AA00C72BE6 /* WaterInfoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A7F3F235CD0AA00C72BE6 /* WaterInfoTable.swift */; };
+		9F4372F823983836004DDF4F /* SendNewWaterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4372F723983836004DDF4F /* SendNewWaterInfo.swift */; };
+		9F51342E2395A907007C9923 /* EmptyTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51342D2395A907007C9923 /* EmptyTableController.swift */; };
 		9F5A4C3F2369E13E002CEE26 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A4C3E2369E13E002CEE26 /* NetworkManager.swift */; };
 		9F5CFC9E23219D7000A684D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F5CFC9D23219D7000A684D0 /* GoogleService-Info.plist */; };
 		9F7467DB237B30DB00767197 /* WaterCellDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7467DA237B30DB00767197 /* WaterCellDetail.swift */; };
@@ -31,6 +34,7 @@
 		72E90DA9DD883176B30C32BD /* Pods_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D303258D0540A7C3B7227B /* Pods-Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile.debug.xcconfig"; path = "Target Support Files/Pods-Mobile/Pods-Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0D824F238072EC005E5837 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		9F1062EE23856F430068786C /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		9F12DCA123217F2700CA9977 /* Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F12DCA423217F2700CA9977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F12DCA623217F2700CA9977 /* LogInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreen.swift; sourceTree = "<group>"; };
@@ -41,6 +45,8 @@
 		9F1D6B46236AB73A00979AFF /* WaterInfoModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInfoModule.swift; sourceTree = "<group>"; };
 		9F2038402368D05C000F7521 /* WaterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInfoCell.swift; sourceTree = "<group>"; };
 		9F2A7F3F235CD0AA00C72BE6 /* WaterInfoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInfoTable.swift; sourceTree = "<group>"; };
+		9F4372F723983836004DDF4F /* SendNewWaterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNewWaterInfo.swift; sourceTree = "<group>"; };
+		9F51342D2395A907007C9923 /* EmptyTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableController.swift; sourceTree = "<group>"; };
 		9F5A4C3E2369E13E002CEE26 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9F5CFC9D23219D7000A684D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F7467DA237B30DB00767197 /* WaterCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterCellDetail.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 		9F12DCA323217F2700CA9977 /* Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				9F51342C2395A8E0007C9923 /* EmptyTable */,
 				9FACF27F23805F7D0006B4D2 /* Profile */,
 				9F5C6FE0236A39B0002367EC /* WaterInfo */,
 				9F5C6FDF236A397D002367EC /* Animations */,
@@ -120,8 +127,25 @@
 			children = (
 				9F12DCA623217F2700CA9977 /* LogInScreen.swift */,
 				9F8CFF38233025DE00C1B4E5 /* SignUpFireBase.swift */,
+				9F1062EE23856F430068786C /* UserInfo.swift */,
 			);
 			path = AccountEntry;
+			sourceTree = "<group>";
+		};
+		9F4372F623983677004DDF4F /* AddWaterInfo */ = {
+			isa = PBXGroup;
+			children = (
+				9F4372F723983836004DDF4F /* SendNewWaterInfo.swift */,
+			);
+			path = AddWaterInfo;
+			sourceTree = "<group>";
+		};
+		9F51342C2395A8E0007C9923 /* EmptyTable */ = {
+			isa = PBXGroup;
+			children = (
+				9F51342D2395A907007C9923 /* EmptyTableController.swift */,
+			);
+			path = EmptyTable;
 			sourceTree = "<group>";
 		};
 		9F5A4C3D2369DE37002CEE26 /* Network */ = {
@@ -143,6 +167,7 @@
 		9F5C6FE0236A39B0002367EC /* WaterInfo */ = {
 			isa = PBXGroup;
 			children = (
+				9F4372F623983677004DDF4F /* AddWaterInfo */,
 				9FACF27D23805EBB0006B4D2 /* WaterTables */,
 			);
 			path = WaterInfo;
@@ -303,10 +328,13 @@
 				9F12DCA723217F2700CA9977 /* LogInScreen.swift in Sources */,
 				9F8CFF39233025DE00C1B4E5 /* SignUpFireBase.swift in Sources */,
 				9FE9E1312380935F00C9D701 /* EditProfileDataViewController.swift in Sources */,
+				9F4372F823983836004DDF4F /* SendNewWaterInfo.swift in Sources */,
 				9FACF282238060160006B4D2 /* ProfileController.swift in Sources */,
+				9F1062EF23856F430068786C /* UserInfo.swift in Sources */,
 				9F1D6B47236AB73A00979AFF /* WaterInfoModule.swift in Sources */,
 				9F7467DB237B30DB00767197 /* WaterCellDetail.swift in Sources */,
 				9FFABDB22334E11F007EBBB4 /* Validation.swift in Sources */,
+				9F51342E2395A907007C9923 /* EmptyTableController.swift in Sources */,
 				9F12DCA523217F2700CA9977 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

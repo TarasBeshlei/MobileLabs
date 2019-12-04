@@ -9,15 +9,21 @@
 import UIKit
 import SDWebImage
 import MaterialComponents.MaterialSnackbar
+import Firebase
+import MaterialComponents.MaterialButtons
+
 
 var arrayOfWaterInfoDecoded = [WaterInfo]()
+var userInfo = UserInfo(userId: Auth.auth().currentUser!.uid, userName: (Auth.auth().currentUser?.displayName)!, userEmail: Auth.auth().currentUser!.email!)
 var cellIndex = 0
 
 final class WaterInfoTable: UIViewController {
     
     //MARK: Outlets
     @IBOutlet private weak var tableView: UITableView!
+
     
+   
     //MARK: UIViews
     private lazy var progressIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     private lazy var refresh: UIRefreshControl = {
@@ -29,12 +35,24 @@ final class WaterInfoTable: UIViewController {
     
     //MARK: Variables
     let networkManager = NetworkManager()
+    @IBOutlet weak var floatingButton = MDCFloatingButton()
+   
+
+    @IBAction func buttonAction(_ sender: Any) {
+        performSegue(withIdentifier: "floating", sender: self)
+    }
+    
+    @IBAction func unwindToTab(_ sender: UIStoryboardSegue) {}
     
     //MARK:  View controller lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewCOntroller()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         fetchData()
+     }
     
     //MARK: Private Methods
     private func setUpTableView() {
@@ -119,8 +137,12 @@ extension WaterInfoTable: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell") as! WaterInfoCell
         let data = arrayOfWaterInfoDecoded[indexPath.row]
-        
-        cell.imageViewCell.sd_setImage(with: data.imageURL, placeholderImage: nil)
+        print(data.imageURL)
+        if (data.imageURL != nil) {
+            cell.imageViewCell.sd_setImage(with: data.imageURL, placeholderImage: nil)
+        } else {
+            cell.imageViewCell.image = UIImage(named: "no-image")
+        }
         cell.cityNameLable.text = "City Name: " + data.cityName
         cell.coordinatesLable.text = "Coordiantes: " + data.coordiantes
         cell.waterLevelLabel.text = "Water Level: " + data.waterLevel
