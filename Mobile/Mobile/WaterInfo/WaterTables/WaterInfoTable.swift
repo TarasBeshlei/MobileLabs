@@ -10,6 +10,9 @@ import UIKit
 import SDWebImage
 import MaterialComponents.MaterialSnackbar
 
+var arrayOfWaterInfoDecoded = [WaterInfo]()
+var cellIndex = 0
+
 final class WaterInfoTable: UIViewController {
     
     //MARK: Outlets
@@ -24,8 +27,7 @@ final class WaterInfoTable: UIViewController {
         return refreshControl
     }()
     
-    //MARK: Private Variables
-    private var arrayOfWaterInfoDecoded = [WaterInfo]()
+    //MARK: Variables
     let networkManager = NetworkManager()
     
     //MARK:  View controller lifecycle methods
@@ -60,7 +62,7 @@ final class WaterInfoTable: UIViewController {
         networkManager.getDataFromServer { [weak self] (result) in
             switch result {
             case .Seccess(let data):
-                self?.arrayOfWaterInfoDecoded = data
+                arrayOfWaterInfoDecoded = data
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     self!.progressIndicator.stopAnimating()
@@ -76,7 +78,7 @@ final class WaterInfoTable: UIViewController {
         networkManager.getDataFromServer { [weak self] (result) in
             switch result {
             case .Seccess(let data):
-                self?.arrayOfWaterInfoDecoded = data
+                arrayOfWaterInfoDecoded = data
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     self!.progressIndicator.stopAnimating()
@@ -126,5 +128,11 @@ extension WaterInfoTable: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellIndex = indexPath.row
+        performSegue(withIdentifier: "CellDetail", sender: self)
+    }
+
 }
 

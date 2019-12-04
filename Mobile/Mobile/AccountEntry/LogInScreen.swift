@@ -57,10 +57,8 @@ final class LogInScreen: UIViewController {
                 print("Success in")
                 self!.performSegue(withIdentifier: "WaterListSegue", sender: self)
             } else {
-                if (self!.email.text!.isEmpty && self!.password.text!.isEmpty) {
-                    self?.errorInField.text! = "Wrong email or password, try againg."
-                    self?.validationIndication()
-                }
+                self?.errorInField.text! = "Wrong email or password, try againg."
+                self?.validationIndication()
             }
         }
     }
