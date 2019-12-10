@@ -45,9 +45,8 @@ final class EditProfileDataViewController: UIViewController {
     private func uploadProfileImage() {
         guard let imageSelected = self.image else { return }
         guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else { return }
-        guard let user = Auth.auth().currentUser else { return }
         let storageRef = Storage.storage().reference(forURL: "gs://mobile-5bfd5.appspot.com")
-        let storageProfileRef = storageRef.child("profile").child(user.uid)
+        let storageProfileRef = storageRef.child("profile").child(userInfo.userId)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
         storageProfileRef.putData(imageData, metadata: metadata) { (storageMetadata, error) in
@@ -73,16 +72,18 @@ final class EditProfileDataViewController: UIViewController {
         if (!changeNameField.text!.isEmpty) {
             changeRequest?.displayName = changeNameField.text
             changeRequest?.commitChanges(completion: nil)
-            showAlert()
         }
         if (!changeEmailField.text!.isEmpty) {
             updateEmailRef.updateEmail(to: changeEmailField.text!) { (error) in
                 if (error != nil) {
                     self.validationRef.validationIndication(inField: self.changeEmailField)
                 } else {
-                    self.showAlert()
+                    
                 }
             }
+        }
+        if ((!changeNameField.text!.isEmpty) || (!changeEmailField.text!.isEmpty)) {
+            showAlert()
         }
     }
     
